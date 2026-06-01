@@ -129,7 +129,7 @@ fun ScanResultScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(Icons.Default.OpenInBrowser, contentDescription = null)
+                        Icon(Icons.Default.OpenInNew, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
                         Text("打开链接")
                     }
@@ -142,7 +142,7 @@ fun ScanResultScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(Icons.Default.Wifi, contentDescription = null)
+                        Icon(Icons.Default.NetworkWifi, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
                         Text("复制WiFi信息")
                     }
@@ -185,7 +185,7 @@ fun ScanResultScreen(
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(Icons.Default.ContentCopy, contentDescription = null)
+                Icon(Icons.Default.FileCopy, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text("复制内容")
             }
@@ -208,13 +208,13 @@ fun ScanResultScreen(
 
 private fun getTypeIcon(type: Int): androidx.compose.ui.graphics.vector.ImageVector {
     return when (type) {
-        Barcode.TYPE_URL -> Icons.Default.Link
-        Barcode.TYPE_WIFI -> Icons.Default.Wifi
+        Barcode.TYPE_URL -> Icons.Default.InsertLink
+        Barcode.TYPE_WIFI -> Icons.Default.NetworkWifi
         Barcode.TYPE_PHONE -> Icons.Default.Phone
         Barcode.TYPE_EMAIL -> Icons.Default.Email
         Barcode.TYPE_CONTACT_INFO -> Icons.Default.Person
         Barcode.TYPE_GEO -> Icons.Default.LocationOn
-        else -> Icons.Default.QrCode
+        else -> Icons.Default.QrCode2
     }
 }
 
