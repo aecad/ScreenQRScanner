@@ -47,7 +47,7 @@ override fun onCreate() {
         startForeground(
             NOTIFICATION_ID,
             createNotification(),
-            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
         )
     } else {
         startForeground(NOTIFICATION_ID, createNotification())
