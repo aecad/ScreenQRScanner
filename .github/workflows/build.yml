@@ -1,15 +1,14 @@
-    - uses: actions/checkout@v4
-      with:
-        lfs: true
+name: Build and Release APK
 
-    - name: Diagnose gradle wrapper
-      run: |
-        echo "=== File size ==="
-        ls -lh gradle/wrapper/gradle-wrapper.jar
-        echo "=== File head (check if it's text/LFS pointer) ==="
-        head -c 200 gradle/wrapper/gradle-wrapper.jar
-        echo ""
-        echo "=== Check if LFS file ==="
-        git lfs ls-files | grep gradle-wrapper.jar || echo "Not tracked by LFS"
-        echo "=== Check .gitattributes ==="
-        cat .gitattributes 2>/dev/null || echo "No .gitattributes"
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      ...
