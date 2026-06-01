@@ -37,12 +37,23 @@ class FloatingWindowService : Service() {
         const val NOTIFICATION_ID = 1
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        createNotificationChannel()
+import android.content.pm.ServiceInfo
+
+override fun onCreate() {
+    super.onCreate()
+    windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    createNotificationChannel()
+    
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
+        startForeground(
+            NOTIFICATION_ID,
+            createNotification(),
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+        )
+    } else {
         startForeground(NOTIFICATION_ID, createNotification())
     }
+}
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (floatingView == null) {
