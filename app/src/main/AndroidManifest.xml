@@ -40,7 +40,7 @@
             android:name=".service.FloatingWindowService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="mediaProjection" />
+            android:foregroundServiceType="dataSync" />
 
         <!-- 屏幕捕获服务 -->
         <service
