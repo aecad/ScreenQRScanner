@@ -25,6 +25,11 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
       
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: 8.2
+        
     - name: Cache Gradle packages
       uses: actions/cache@v4
       with:
@@ -35,22 +40,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
     
-    - name: Fix gradle wrapper jar
-      run: |
-        rm -f gradle/wrapper/gradle-wrapper.jar
-        GRADLE_VERSION=$(grep "distributionUrl" gradle/wrapper/gradle-wrapper.properties | sed 's/.*gradle-\([0-9.]*\)-.*/\1/')
-        echo "Downloading wrapper for Gradle $GRADLE_VERSION"
-        curl -L -o gradle/wrapper/gradle-wrapper.jar \
-          "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}.0/gradle/wrapper/gradle-wrapper.jar"
-        ls -lh gradle/wrapper/gradle-wrapper.jar
-    
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
-    
-    - name: Build with Gradle
+    - name: Build with system Gradle
       env:
         ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
-      run: ./gradlew assembleDebug --stacktrace
+      run: gradle assembleDebug --stacktrace
       
     - name: Upload APK
       uses: actions/upload-artifact@v4
