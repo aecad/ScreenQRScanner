@@ -22,6 +22,7 @@ import androidx.core.app.NotificationCompat
 import com.example.screenqrscanner.MainActivity
 import com.example.screenqrscanner.R
 import com.example.screenqrscanner.ScreenCaptureActivity
+import android.content.pm.ServiceInfo
 
 class FloatingWindowService : Service() {
 
@@ -36,8 +37,6 @@ class FloatingWindowService : Service() {
         const val CHANNEL_ID = "ScreenQRScannerChannel"
         const val NOTIFICATION_ID = 1
     }
-
-import android.content.pm.ServiceInfo
 
 override fun onCreate() {
     super.onCreate()
