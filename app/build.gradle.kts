@@ -38,7 +38,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.1.2")
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.0")
     implementation("androidx.activity:activity-compose:1.8.2")
-    
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
     // ML Kit for QR code scanning
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
     
