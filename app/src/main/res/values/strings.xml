@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">屏幕扫码助手</string>
+    <string name="floating_button_desc">悬浮扫码按钮</string>
+    <string name="scan_qr_code">扫码</string>
+    <string name="scan_result">扫码结果</string>
+    <string name="copy">复制</string>
+    <string name="share">分享</string>
+    <string name="open_url">打开链接</string>
+    <string name="no_qr_detected">未检测到二维码</string>
+    <string name="scan_failed">扫码失败</string>
+    <string name="copied_to_clipboard">已复制到剪贴板</string>
+</resources>
