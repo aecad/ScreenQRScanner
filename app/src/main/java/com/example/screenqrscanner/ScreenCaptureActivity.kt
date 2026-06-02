@@ -42,9 +42,11 @@ class ScreenCaptureActivity : Activity() {
         
         mediaProjectionManager = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         
-        // 请求屏幕捕获权限
-        val captureIntent = mediaProjectionManager.createScreenCaptureIntent()
-        startActivityForResult(captureIntent, REQUEST_CODE_SCREEN_CAPTURE)
+        // 只在首次创建时请求屏幕捕获权限，避免旋转时重复请求
+        if (savedInstanceState == null) {
+            val captureIntent = mediaProjectionManager.createScreenCaptureIntent()
+            startActivityForResult(captureIntent, REQUEST_CODE_SCREEN_CAPTURE)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -73,6 +75,13 @@ class ScreenCaptureActivity : Activity() {
         imageReader = ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, 2)
         
         mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)
+        
+        // Android 14+ 需要注册回调，否则 createVirtualDisplay 会失败
+        mediaProjection?.registerCallback(object : MediaProjection.Callback() {
+            override fun onStop() {
+                cleanup()
+            }
+        }, Handler(Looper.getMainLooper()))
         
         virtualDisplay = mediaProjection?.createVirtualDisplay(
             "ScreenCapture",
