@@ -78,7 +78,9 @@ override fun onCreate() {
             y = 200
         }
 
-        floatingView = LayoutInflater.from(this).inflate(R.layout.floating_window, null)
+        // 用应用级别的 context inflate，确保 Material 主题属性可用
+        val inflater = LayoutInflater.from(applicationContext)
+        floatingView = inflater.inflate(R.layout.floating_window, null)
         
         val scanButton = floatingView?.findViewById<ImageButton>(R.id.scanButton)
         

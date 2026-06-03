@@ -8,10 +8,10 @@
         android:id="@+id/scanButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_scan"
         android:scaleType="centerInside"
         android:padding="12dp"
+        android:background="@android:color/transparent"
         android:contentDescription="扫码按钮" />
 
 </FrameLayout>
